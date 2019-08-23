@@ -28,6 +28,10 @@ export class DialogComponent implements OnInit {
     const files: { [key: string]: File } = this.file.nativeElement.files;
     for (let key in files) {
       if (!isNaN(parseInt(key))) {
+        
+        // inject new filename
+        this.uploadService.filenames.set(files[key].name, Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + '.jpg');
+
         this.files.add(files[key]);
       }
     }

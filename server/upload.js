@@ -2,6 +2,7 @@ const IncomingForm = require('formidable').IncomingForm;
 const fs = require('fs');
 
 module.exports = function upload(req, res) {
+
   const form = new IncomingForm();
 
   form.on('file', (field, file) => {
@@ -9,7 +10,8 @@ module.exports = function upload(req, res) {
     // e.g. save it to the database
     // you can access it using file.path
     console.log('file', file.name);
-    const readStream = fs.createReadStream(file.path);
+    const readStream = fs.createReadStream(file.path)
+      .pipe(fs.createWriteStream('./uploads/' + file.name));
   });
   form.on('end', () => {
     res.json();

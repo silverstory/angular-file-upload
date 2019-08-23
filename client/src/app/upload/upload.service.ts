@@ -6,11 +6,16 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
+import { Key } from 'protractor';
 
 const url = 'http://localhost:3000/upload';
 
 @Injectable()
 export class UploadService {
+
+  // public filenames: { [key: string]: { filename: String } } = {};
+  public filenames = new Map();
+  
   constructor(private http: HttpClient) { }
 
   public upload(
@@ -22,7 +27,10 @@ export class UploadService {
     files.forEach(file => {
       // create a new multipart-form for every file
       const formData: FormData = new FormData();
-      formData.append('file', file, file.name);
+
+      // set new filename
+      formData.append('file', file, this.filenames.get(file.name));
+      // formData.append('file', file, file.name);
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
