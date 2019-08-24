@@ -32,7 +32,7 @@ module.exports = function upload(req, res) {
     // you can access it using file.path
     console.log(file.name  + ' > ' + filename);
     const readStream = fs.createReadStream(file.path)
-      .pipe(fs.createWriteStream('./uploads/' + filename));
+      .pipe(fs.createWriteStream('/uploads/' + filename));
   });  
   form.on('end', () => {
     res.json( { path: 'http://127.0.0.1/' + filename } );
