@@ -30,8 +30,10 @@ export class DialogComponent implements OnInit {
       if (!isNaN(parseInt(key))) {
         
         // inject new filename
-        this.uploadService.filenames.set(files[key].name, Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + '.jpg');
-
+        const filename = Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15) + '.' +
+        files[key].name.split('.').pop();
+        this.uploadService.filenames.set(files[key].name, filename );
         this.files.add(files[key]);
       }
     }

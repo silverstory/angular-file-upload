@@ -29,8 +29,9 @@ export class UploadService {
       const formData: FormData = new FormData();
 
       // set new filename
-      formData.append('file', file, this.filenames.get(file.name));
-      // formData.append('file', file, file.name);
+      formData.append('filename', this.filenames.get(file.name));
+      formData.append('file', file, file.name);
+      // formData.append('file', file, this.filenames.get(file.name));
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
