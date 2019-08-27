@@ -33,9 +33,9 @@ module.exports = function upload(req, res) {
     console.log(file.name  + ' > ' + filename);
     const readStream = fs.createReadStream(file.path)
       .pipe(fs.createWriteStream('/uploads/' + filename));
-  });  
+  });
   form.on('end', () => {
-    res.json( { path: 'http://127.0.0.1/' + filename } );
+    res.json( { path: `http://${ process.env.HOST }/${ filename }` } );
   });
   form.parse(req);
 };
