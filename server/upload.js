@@ -57,7 +57,10 @@ module.exports = function upload(req, res) {
       const oldPath = `/uploads/${filename}`;
       const newPath = `/uploads/${x}-v${v}.${filename.split('.').pop()}`;
       console.log(oldPath + ' > ' + newPath);
-      fs.rename(oldPath, newPath, (err) => {
+      // remove from august 2020 commit
+      // to fix bug on not retaining original file
+      // fs.rename(oldPath, newPath, (err) => {
+      fs.rename(oldPath, oldPath, (err) => {
         // handle error in here
         // console.error(err)
       })
