@@ -12,6 +12,9 @@ const performance = require('./hrms/performance');
 const rme = require('./hrms/rme');
 
 const sourcecode = require('./sourcecode');
+
+const rsp = require('./rsp');
+
 const cors = require('cors');
 
 const server = express();
@@ -46,6 +49,8 @@ server.post('/performance', performance);
 server.post('/rme', rme);
 
 server.post('/sourcecode', sourcecode);
+
+server.post('/rsp', rsp);
 
 server.listen(process.env.PORT, () => {
   console.log('Server started!');
